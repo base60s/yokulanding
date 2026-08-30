@@ -1,0 +1,4 @@
+# generated design-canvas bundle (re-seed from the .dc.html files) and local previews
+yoku-landing.html
+_preview-*.html
+.DS_Store

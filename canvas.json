@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 900, "expand": "fill" },
+    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 0, "y": 1040, "w": 1440, "h": 900, "expand": "fill" },
+    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 1560, "y": 0, "w": 390, "h": 900 },
+    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 1560, "y": 1040, "w": 390, "h": 900 }
+  ],
+  "annotations": [
+    { "id": "assumptions", "x": 0, "y": -300, "w": 1100, "text": "Things to check\n\n• Single-screen landing: nav, hero with the glyph sphere, and the prompt line. Nav links and the secondary link point to “#” until you decide where they go.\n• Company name is taken from the folder name (yokulanding) → “Yoku”. Rename it in the header and prompt line if that's wrong.\n• Anything in [brackets] is a placeholder for a real fact (next availability / próxima disponibilidad).\n• Sphere: hover to spin it faster, click to knock glyphs loose — they grow back. Accent colour, glyph density and spin speed are adjustable per board.\n• The full multi-section version is kept in the project's archive/ folder." }
+  ],
+  "launch": { "view": "canvas" }
+}

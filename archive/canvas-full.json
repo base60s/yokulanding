@@ -1,0 +1,41 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Landing — Desktop",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 3700,
+      "expand": "fill"
+    },
+    {
+      "file": "Mobile.dc.html",
+      "title": "Landing — Mobile",
+      "x": 1560,
+      "y": 0,
+      "w": 390,
+      "h": 5100
+    },
+    {
+      "file": "HeroCentered.dc.html",
+      "title": "Hero — Option B (centered sphere)",
+      "x": 0,
+      "y": 3860,
+      "w": 1440,
+      "h": 960
+    }
+  ],
+  "annotations": [
+    {
+      "id": "assumptions",
+      "x": 0,
+      "y": -380,
+      "w": 1100,
+      "text": "Things to check\n\n• Company name is taken from the folder name (yokulanding) → “Yoku”. Rename it in the header, footer and prompt line if that's wrong.\n• Anything in [brackets] is a placeholder for a real fact: client logos, retest window, response time, email, legal name, next availability.\n• The finding card is an illustrative SAMPLE, not a real client result.\n• Sphere: hover to spin it faster, click to knock glyphs loose — they grow back. Accent colour, glyph density and spin speed are adjustable per board.\n• Option B (below) is the same hero with the sphere centred, like the ThreeUI study, for comparison."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
