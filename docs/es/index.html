@@ -48,6 +48,7 @@ h1 { margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spa
 .ps { color: var(--accent); }
 .cursor { display: block; width: 8px; height: 14px; background: var(--accent); animation: yk-blink 1.1s steps(1) infinite; }
 .avail { margin-left: auto; color: var(--dim); }
+.avail:hover { color: var(--fg); }
 @keyframes yk-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
 @media (max-width: 1280px), (max-height: 860px) {
@@ -85,10 +86,10 @@ h1 { margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spa
   <header class="nav">
     <a class="brand mono" href="../"><span class="mark"></span><span>YOKU</span></a>
     <nav class="links">
-      <a class="mono navlink hide-m" href="#">Contacto</a>
+      <a class="mono navlink hide-m" href="mailto:yoku@chrom.ar">Contacto</a>
       <a class="mono navlink" href="../" hreflang="en" lang="en">EN</a>
     </nav>
-    <a class="mono btn btn-nav" href="#">Agenda una evaluación</a>
+    <a class="mono btn btn-nav" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20evaluaci%C3%B3n">Agenda una evaluación</a>
   </header>
 
   <main class="hero">
@@ -97,8 +98,8 @@ h1 { margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spa
       <h1 class="mono">Entramos primero.</h1>
       <p class="sub">Pentesting manual. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.</p>
       <div class="actions">
-        <a class="mono btn btn-primary" href="#"><span>Agenda una evaluación</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg></a>
-        <a class="mono quiet" href="#">Solicita un informe de ejemplo</a>
+        <a class="mono btn btn-primary" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20evaluaci%C3%B3n"><span>Agenda una evaluación</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg></a>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20informe%20de%20ejemplo">Solicita un informe de ejemplo</a>
       </div>
     </div>
     <div class="visual">
@@ -110,7 +111,7 @@ h1 { margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spa
     <span class="ps">yoku@ops:~$</span>
     <span>scope --web --api --cloud<span class="hide-m"> --network --red-team</span></span>
     <span class="cursor"></span>
-    <span class="avail hide-m">próxima disponibilidad: [MES]</span>
+    <a class="avail hide-m" href="mailto:yoku@chrom.ar">yoku@chrom.ar</a>
   </footer>
 </div>
 
