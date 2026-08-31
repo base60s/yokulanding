@@ -3,117 +3,296 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yoku — Manual penetration testing</title>
-<meta name="description" content="Manual pentesting. Findings your engineers can fix — not a scanner export.">
+<title>Yoku — Penetration testing</title>
+<meta name="description" content="Pentesting. Findings your engineers can fix — not a scanner export.">
 <meta name="theme-color" content="#0a0a0c">
+<meta property="og:title" content="Yoku — Penetration testing">
+<meta property="og:description" content="Pentesting. Findings your engineers can fix — not a scanner export.">
+<meta property="og:url" content="https://yoku.chrom.ar/">
+<meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://base60s.github.io/yokulanding/">
-<link rel="alternate" hreflang="en" href="https://base60s.github.io/yokulanding/">
-<link rel="alternate" hreflang="es" href="https://base60s.github.io/yokulanding/es/">
-<link rel="alternate" hreflang="x-default" href="https://base60s.github.io/yokulanding/">
+<link rel="canonical" href="https://yoku.chrom.ar/">
+<link rel="alternate" hreflang="en" href="https://yoku.chrom.ar/">
+<link rel="alternate" hreflang="es" href="https://yoku.chrom.ar/es/">
+<link rel="alternate" hreflang="x-default" href="https://yoku.chrom.ar/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
 <style>
-:root { --bg: #0a0a0c; --fg: #ededf0; --muted: #8b8b94; --dim: #5c5c66; --line: rgba(255,255,255,0.08); --accent: #f3b942; }
+:root { --bg: #0a0a0c; --fg: #ededf0; --muted: #8b8b94; --dim: #5c5c66; --soft: #a1a1aa; --body: #d4d4d8; --line: rgba(255,255,255,0.08); --line2: rgba(255,255,255,0.14); --card: #101013; --band: #0d0d10; --accent: #f3b942; }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; background: var(--bg); }
 body { color: var(--fg); font-family: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
+::selection { background: rgba(243,185,66,0.28); color: #0a0a0c; }
 .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
-.page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; flex: none; padding: 0 64px; border-bottom: 1px solid var(--line); }
+section { scroll-margin-top: 16px; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; padding: 0 64px; border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: 0.1em; }
 .mark { display: block; width: 10px; height: 10px; background: var(--accent); }
-.links { display: flex; align-items: center; gap: 32px; }
+.links { display: flex; align-items: center; gap: 28px; }
 .navlink { font-size: 13px; color: var(--muted); letter-spacing: 0.02em; }
 .navlink:hover { color: var(--fg); }
+.divider { display: block; width: 1px; height: 14px; background: var(--line2); }
 .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--bg); font-weight: 600; border-radius: 4px; white-space: nowrap; transition: filter 160ms ease, transform 160ms ease; }
 .btn:hover { filter: brightness(1.08); }
 .btn:active { transform: translateY(1px); }
 .btn-nav { height: 44px; padding: 0 18px; font-size: 13px; }
 .btn-primary { height: 52px; padding: 0 22px; font-size: 14px; }
-.hero { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 640px; gap: 48px; align-items: center; padding: 40px 64px; }
+.cta-short { display: none; }
+.quiet { font-size: 14px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; }
+.quiet:hover { color: var(--fg); border-color: var(--fg); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 640px; gap: 48px; align-items: center; padding: 64px 64px 48px; }
 .copy { display: flex; flex-direction: column; gap: 28px; max-width: 620px; }
 .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .dot { display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 h1 { margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance; }
-.sub { margin: 0; font-size: 19px; line-height: 1.55; color: #a1a1aa; max-width: 540px; text-wrap: pretty; }
+.sub { margin: 0; font-size: 19px; line-height: 1.55; color: var(--soft); max-width: 540px; text-wrap: pretty; }
 .actions { display: flex; align-items: center; gap: 24px; margin-top: 8px; flex-wrap: wrap; }
-.quiet { font-size: 14px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; }
-.quiet:hover { color: var(--fg); border-color: var(--fg); }
 .visual { display: flex; align-items: center; justify-content: center; width: 640px; height: 640px; justify-self: end; }
 .visual canvas { width: 640px; height: 640px; display: block; cursor: crosshair; }
-.prompt { display: flex; align-items: center; gap: 14px; flex: none; padding: 14px 64px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; }
+.prompt { display: flex; align-items: center; gap: 14px; padding: 14px 64px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; }
 .ps { color: var(--accent); }
 .cursor { display: block; width: 8px; height: 14px; background: var(--accent); animation: yk-blink 1.1s steps(1) infinite; }
 .avail { margin-left: auto; color: var(--dim); }
 .avail:hover { color: var(--fg); }
 @keyframes yk-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
-@media (max-width: 1280px), (max-height: 860px) {
+h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance; }
+.svc { display: flex; flex-direction: column; gap: 36px; padding: 72px 64px 64px; }
+.svc-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+.svc-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--dim); max-width: 360px; text-align: right; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.card4 { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--line2); }
+.card4 h3 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+.card4 p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+.approach { display: flex; flex-direction: column; gap: 36px; padding: 64px; background: var(--band); border-top: 1px solid var(--line); }
+.step { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--line2); }
+.step h3 { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: var(--accent); }
+.step p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.report { display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 56px; align-items: center; padding: 64px; border-top: 1px solid var(--line); }
+.rleft { display: flex; flex-direction: column; gap: 22px; max-width: 540px; }
+.checks { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1); }
+.check { display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.check svg { flex: none; margin-top: 3px; color: var(--accent); }
+.check span { font-size: 15px; line-height: 1.5; color: var(--body); }
+.rleft .quiet { align-self: flex-start; }
+.fcard { display: flex; flex-direction: column; width: 560px; background: var(--card); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; overflow: hidden; }
+.fhead { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: 0.06em; color: var(--muted); }
+.ftag { padding: 3px 8px; border: 1px dashed rgba(255,255,255,0.25); border-radius: 3px; font-size: 10px; letter-spacing: 0.14em; color: var(--muted); }
+.fbody { display: flex; flex-direction: column; gap: 14px; padding: 20px 18px; }
+.fchips { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.sev { padding: 4px 8px; border-radius: 3px; background: rgba(255,92,92,0.14); color: #ff6b6b; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; }
+.fmeta { font-size: 12px; color: var(--muted); }
+.ftitle { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.fendpoint { font-size: 12.5px; padding: 9px 11px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; color: var(--accent); overflow-x: auto; white-space: nowrap; }
+.fdesc { margin: 0; font-size: 14px; line-height: 1.55; color: var(--soft); }
+.fmono { display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.65; color: var(--muted); }
+.flabel { color: var(--dim); }
+.fstatus { display: flex; align-items: center; gap: 10px; padding: 11px 18px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); }
+.fdot { display: block; width: 7px; height: 7px; border-radius: 50%; background: #ff6b6b; }
+.cta { display: flex; align-items: center; justify-content: space-between; gap: 48px; padding: 72px 64px; border-top: 1px solid var(--line); }
+.cta h2 { font-size: 44px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em; }
+.cta-actions { display: flex; align-items: center; gap: 24px; flex: none; }
+.site-foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 64px; border-top: 1px solid var(--line); }
+.fbrand { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; }
+.fbrand .mark { width: 8px; height: 8px; }
+.flinks { display: flex; align-items: center; gap: 28px; }
+.flinks a { font-size: 12px; color: var(--muted); }
+.flinks a:hover { color: var(--fg); }
+.fmeta2 { display: flex; align-items: center; gap: 20px; font-size: 12px; }
+.fmeta2 a { color: var(--muted); }
+.fmeta2 a:hover { color: var(--fg); }
+.fcopy { color: var(--dim); }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
+@media (max-width: 1280px) {
   .hero { grid-template-columns: minmax(0, 1fr) 520px; }
   .visual, .visual canvas { width: 520px; height: 520px; }
   h1 { font-size: 64px; }
 }
+@media (max-width: 1180px) {
+  .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .report { grid-template-columns: minmax(0, 1fr); }
+  .fcard { width: auto; max-width: 640px; }
+}
 @media (max-width: 980px) {
   .hero { grid-template-columns: minmax(0, 1fr); }
   .visual { justify-self: center; }
+  .svc-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .svc-note { text-align: left; max-width: none; }
+  .cta { flex-direction: column; align-items: flex-start; gap: 24px; }
 }
 @media (max-width: 640px) {
   .hide-m { display: none; }
   .nav { height: 56px; padding: 0 20px; }
-  .brand { font-size: 14px; }
-  .links { gap: 20px; }
+  .brand { font-size: 14px; gap: 9px; }
+  .brand .mark { width: 9px; height: 9px; }
+  .links { gap: 16px; }
+  .navlink { font-size: 12px; }
   .btn-nav { height: 40px; padding: 0 14px; font-size: 12px; }
-  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 24px; padding: 32px 20px 20px; }
+  .cta-long { display: none; }
+  .cta-short { display: inline; }
+  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 20px; padding: 36px 20px 28px; }
   .copy { gap: 20px; max-width: none; }
   .eyebrow { font-size: 11px; gap: 10px; }
-  h1 { font-size: 48px; }
+  h1 { font-size: 46px; }
   .sub { font-size: 16px; line-height: 1.5; }
   .actions { flex-direction: column; align-items: stretch; gap: 14px; }
   .btn-primary { justify-content: center; }
-  .quiet { align-self: flex-start; font-size: 13px; }
-  .visual { width: 300px; height: 300px; margin: auto auto 0; }
-  .visual canvas { width: 300px; height: 300px; }
+  .actions .quiet { align-self: flex-start; font-size: 13px; }
+  .visual { width: 320px; height: 320px; margin: 12px auto 0; }
+  .visual canvas { width: 320px; height: 320px; }
   .prompt { padding: 12px 20px; font-size: 11.5px; gap: 10px; }
   .cursor { width: 7px; height: 13px; }
+  h2 { font-size: 29px; line-height: 1.08; }
+  .svc { gap: 22px; padding: 52px 20px 44px; }
+  .svc-note { font-size: 11.5px; }
+  .grid4 { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .card4 { gap: 7px; padding-top: 15px; }
+  .card4 h3 { font-size: 16.5px; }
+  .card4 p { font-size: 14px; }
+  .approach { gap: 22px; padding: 52px 20px; }
+  .step { gap: 6px; padding-top: 13px; }
+  .step h3 { font-size: 15.5px; }
+  .step p { font-size: 13.5px; }
+  .report { gap: 20px; padding: 52px 20px; }
+  .rleft { gap: 18px; max-width: none; }
+  .check { gap: 12px; padding: 10px 0; }
+  .check span { font-size: 13.5px; }
+  .fhead { padding: 11px 14px; font-size: 10.5px; }
+  .ftag { padding: 3px 7px; font-size: 9px; }
+  .fbody { gap: 12px; padding: 16px 14px; }
+  .sev { padding: 3px 7px; font-size: 10px; }
+  .fmeta { font-size: 11px; }
+  .ftitle { font-size: 15px; line-height: 1.4; }
+  .fendpoint { font-size: 11px; padding: 8px 10px; }
+  .fdesc { font-size: 13px; }
+  .fmono { font-size: 11px; }
+  .fstatus { padding: 10px 14px; font-size: 10.5px; }
+  .cta { gap: 18px; padding: 56px 20px; }
+  .cta h2 { font-size: 33px; line-height: 1.05; }
+  .cta-actions { flex-direction: column; align-items: stretch; align-self: stretch; gap: 14px; flex: auto; }
+  .cta-actions .quiet { align-self: flex-start; font-size: 13px; }
+  .site-foot { flex-direction: column; align-items: flex-start; gap: 14px; padding: 28px 20px 36px; }
+  .fmeta2 { width: 100%; justify-content: space-between; }
 }
 </style>
 </head>
 <body>
-<div class="page">
   <header class="nav">
     <a class="brand mono" href="./"><span class="mark"></span><span>YOKU</span></a>
     <nav class="links">
-      <a class="mono navlink hide-m" href="mailto:yoku@chrom.ar">Contact</a>
+      <a class="mono navlink hide-m" href="#services">Services</a>
+      <a class="mono navlink hide-m" href="#approach">Approach</a>
+      <a class="mono navlink hide-m" href="#report">Report</a>
+      <a class="mono navlink hide-m" href="#contact">Contact</a>
+      <span class="divider hide-m"></span>
       <a class="mono navlink" href="es/" hreflang="es" lang="es">ES</a>
     </nav>
-    <a class="mono btn btn-nav" href="mailto:yoku@chrom.ar?subject=Assessment%20request">Book an assessment</a>
+    <a class="mono btn btn-nav" href="mailto:yoku@chrom.ar?subject=Assessment%20request"><span class="cta-long">Book an assessment</span><span class="cta-short">Book a pentest</span></a>
   </header>
 
-  <main class="hero">
+  <main>
+  <section class="hero">
     <div class="copy">
       <p class="eyebrow mono"><span class="dot"></span><span>Offensive security · Penetration testing</span></p>
-      <h1 class="mono">We get in first.</h1>
-      <p class="sub">Manual pentesting. Findings your engineers can fix — not a scanner export.</p>
+      <h1 class="mono">An attacker on your side.</h1>
+      <p class="sub">Pentesting. Findings your engineers can fix — not a scanner export.</p>
       <div class="actions">
         <a class="mono btn btn-primary" href="mailto:yoku@chrom.ar?subject=Assessment%20request"><span>Book an assessment</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg></a>
-        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Sample%20report%20request">Request a sample report</a>
+        <a class="mono quiet" href="#report">See what a report looks like</a>
       </div>
     </div>
     <div class="visual">
       <canvas id="glyph-sphere" width="640" height="640" role="img" aria-label="Rotating sphere made of code glyphs"></canvas>
     </div>
-  </main>
+  </section>
 
-  <footer class="prompt mono">
+  <div class="prompt mono">
     <span class="ps">yoku@ops:~$</span>
     <span>scope --web --api --cloud<span class="hide-m"> --network --red-team</span></span>
     <span class="cursor"></span>
     <a class="avail hide-m" href="mailto:yoku@chrom.ar">yoku@chrom.ar</a>
+  </div>
+
+  <section class="svc" id="services">
+    <div class="svc-head">
+      <h2 class="mono">Everything an attacker would touch.</h2>
+      <p class="svc-note mono">Also on request: mobile apps, thick clients, IoT, code review.</p>
+    </div>
+    <div class="grid4">
+      <article class="card4"><h3 class="mono">Web apps &amp; APIs</h3><p>Auth, business logic, injection — and the endpoints nobody remembers.</p></article>
+      <article class="card4"><h3 class="mono">Cloud &amp; infrastructure</h3><p>IAM, Kubernetes, CI/CD secrets and storage on AWS, GCP and Azure.</p></article>
+      <article class="card4"><h3 class="mono">External &amp; internal network</h3><p>From the perimeter to domain admin, the way an intruder moves.</p></article>
+      <article class="card4"><h3 class="mono">Red team</h3><p>Objective-based operations that test whether anyone notices.</p></article>
+    </div>
+  </section>
+
+  <section class="approach" id="approach">
+    <h2 class="mono">No black box. You see what we see.</h2>
+    <div class="grid4">
+      <div class="step"><h3 class="mono">Scope</h3><p>One call to set targets, rules and accounts. Quote agreed up front.</p></div>
+      <div class="step"><h3 class="mono">Test</h3><p>Manual testing. Critical findings flagged as soon as we confirm them.</p></div>
+      <div class="step"><h3 class="mono">Report</h3><p>Severity, reproduction, evidence and the fix — per finding.</p></div>
+      <div class="step"><h3 class="mono">Retest</h3><p>We verify your fixes and update the report.</p></div>
+    </div>
+  </section>
+
+  <section class="report" id="report">
+    <div class="rleft">
+      <h2 class="mono">A report your engineers will actually read.</h2>
+      <div class="checks">
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>Severity and business impact, spelled out</span></div>
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>Reproduction steps and evidence</span></div>
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>A concrete fix for every finding</span></div>
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>An executive summary you can hand to auditors</span></div>
+      </div>
+      <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Sample%20report%20request">Request a sample report</a>
+    </div>
+    <div class="fcard">
+      <div class="fhead mono"><span>FINDING · YK-0142</span><span class="ftag">SAMPLE</span></div>
+      <div class="fbody">
+        <div class="fchips"><span class="sev mono">CRITICAL</span><span class="fmeta mono">CVSS 9.1</span><span class="fmeta mono">CWE-639</span></div>
+        <h3 class="ftitle mono">Broken object-level authorization on invoice export</h3>
+        <div class="fendpoint mono">GET /api/v2/invoices/{id}/export</div>
+        <p class="fdesc">Any authenticated user can download other tenants' invoices by changing the id. Ids are sequential — the whole customer base can be enumerated.</p>
+        <div class="fmono mono">
+          <span class="flabel">— Reproduction</span>
+          <span>1. Authenticate as tenant A</span>
+          <span>2. Request invoice 48213 (tenant B)</span>
+          <span>3. Server returns tenant B's PDF — 200 OK</span>
+        </div>
+        <div class="fmono mono">
+          <span class="flabel">— Fix</span>
+          <span>Enforce server-side ownership checks on every object access.</span>
+        </div>
+      </div>
+      <div class="fstatus mono"><span class="fdot"></span><span>Open · reported day 2 of 10 · retest pending</span></div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <h2 class="mono">Find out what they'd find.</h2>
+    <div class="cta-actions">
+      <a class="mono btn btn-primary" href="mailto:yoku@chrom.ar?subject=Assessment%20request"><span>Book an assessment</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg></a>
+      <a class="mono quiet" href="mailto:yoku@chrom.ar">yoku@chrom.ar</a>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-foot">
+    <a class="fbrand mono" href="./"><span class="mark"></span><span>YOKU</span></a>
+    <nav class="flinks">
+      <a class="mono" href="#services">Services</a>
+      <a class="mono" href="#approach">Approach</a>
+      <a class="mono" href="#report">Report</a>
+      <a class="mono" href="#contact">Contact</a>
+    </nav>
+    <div class="fmeta2 mono">
+      <a href="mailto:yoku@chrom.ar">yoku@chrom.ar</a>
+      <span class="fcopy">© 2026 Yoku</span>
+    </div>
   </footer>
-</div>
 
 <script>
 function createGlyphSphere(canvas, opts) {

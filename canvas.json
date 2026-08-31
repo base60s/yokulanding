@@ -1,12 +1,12 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 900, "expand": "fill" },
-    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 0, "y": 1040, "w": 1440, "h": 900, "expand": "fill" },
-    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 1560, "y": 0, "w": 390, "h": 900 },
-    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 1560, "y": 1040, "w": 390, "h": 900 }
+    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 2340, "expand": "fill" },
+    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 1560, "y": 0, "w": 1440, "h": 2340, "expand": "fill" },
+    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 3120, "y": 0, "w": 390, "h": 3460 },
+    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 3630, "y": 0, "w": 390, "h": 3460 }
   ],
   "annotations": [
-    { "id": "assumptions", "x": 0, "y": -300, "w": 1100, "text": "Things to check\n\n• Single-screen landing: nav, hero with the glyph sphere, and the prompt line. Nav links and the secondary link point to “#” until you decide where they go.\n• Company name is taken from the folder name (yokulanding) → “Yoku”. Rename it in the header and prompt line if that's wrong.\n• Anything in [brackets] is a placeholder for a real fact (next availability / próxima disponibilidad).\n• Sphere: hover to spin it faster, click to knock glyphs loose — they grow back. Accent colour, glyph density and spin speed are adjustable per board.\n• The full multi-section version is kept in the project's archive/ folder." }
+    { "id": "assumptions", "x": 0, "y": -420, "w": 1180, "text": "Full-page redesign, kept short — what to check\n\n• Hero layout unchanged — the headline is now “An attacker on your side.” / “Un atacante de tu lado.”; the page continues for about two screens: what we test, how an engagement runs, the report (with a sample finding), and a closing CTA. Plain headings, no numbered labels.\n• Nothing unverifiable, per your call: no client logos, no certifications, no invented numbers or promises. When you have real proof points we can add them.\n• The finding card is fictional and labelled SAMPLE/EJEMPLO — swap in a sanitized real one when you can show it.\n• Confirm the four service cards + the small “also on request” line match what you sell.\n• The ES/EN link in the header is decorative here; the live site wires it.\n• The old single-screen boards are in git history; the earlier long draft is in archive/." }
   ],
   "launch": { "view": "canvas" }
 }

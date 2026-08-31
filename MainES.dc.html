@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600">
   <style>
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; background: #0a0a0c; }
     body { color: #ededf0; font-family: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
     a { color: #ededf0; text-decoration: none; }
     a:hover { color: #ffffff; }
+    ::selection { background: rgba(243,185,66,0.28); color: #0a0a0c; }
     .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
     .btn { transition: filter 160ms ease, transform 160ms ease; }
     .btn:hover { filter: brightness(1.08); }
@@ -23,63 +25,205 @@
     .quiet:hover { color: #ededf0 !important; border-color: #ededf0 !important; }
     @keyframes yk-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
     .cursor { animation: yk-blink 1.1s steps(1) infinite; }
-    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
-    @media (max-width: 1280px), (max-height: 860px) {
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
+    @media (max-width: 1280px) {
       .hero { grid-template-columns: minmax(0, 1fr) 520px !important; }
       .hero-visual, .hero-visual canvas { width: 520px !important; height: 520px !important; }
       .hero h1 { font-size: 64px !important; }
     }
+    @media (max-width: 1180px) {
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .report { grid-template-columns: minmax(0, 1fr) !important; }
+      .report-card { width: auto !important; max-width: 640px; }
+    }
     @media (max-width: 980px) {
       .hero { grid-template-columns: minmax(0, 1fr) !important; }
       .hero-visual { justify-self: center !important; }
+      .grid-2 { grid-template-columns: minmax(0, 1fr) !important; }
     }
   </style>
 </helmet>
 
-<div lang="es" style="display: flex; flex-direction: column; min-height: 100vh; background: #0a0a0c; color: #ededf0;">
+<div lang="es" style="background: #0a0a0c; color: #ededf0;">
 
-  <header style="display: flex; align-items: center; justify-content: space-between; height: 64px; flex: none; padding: 0 64px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+  <header style="display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 64px; border-bottom: 1px solid rgba(255,255,255,0.08);">
     <a href="#" class="mono" style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: 0.1em;">
       <span style="display: block; width: 10px; height: 10px; background: {{accent}};"></span>
       <span>YOKU</span>
     </a>
-    <nav style="display: flex; align-items: center; gap: 32px;">
-      <a class="mono navlink" href="mailto:yoku@chrom.ar" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Contacto</a>
+    <nav style="display: flex; align-items: center; gap: 28px;">
+      <a class="mono navlink" href="#services" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Servicios</a>
+      <a class="mono navlink" href="#approach" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Método</a>
+      <a class="mono navlink" href="#report" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Informe</a>
+      <a class="mono navlink" href="#contact" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Contacto</a>
+      <span style="display: block; width: 1px; height: 14px; background: rgba(255,255,255,0.14);"></span>
+      <a class="mono navlink" href="#" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">EN</a>
     </nav>
     <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20evaluaci%C3%B3n" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; background: {{accent}}; color: #0a0a0c; font-size: 13px; font-weight: 600; border-radius: 4px;">Agenda una evaluación</a>
   </header>
 
-  <section class="hero" style="flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 640px; gap: 48px; align-items: center; padding: 40px 64px;">
+  <section class="hero" style="display: grid; grid-template-columns: minmax(0, 1fr) 640px; gap: 48px; align-items: center; padding: 64px 64px 48px;">
     <div style="display: flex; flex-direction: column; gap: 28px; max-width: 620px;">
       <div class="mono" style="display: flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8b8b94;">
         <span style="display: block; width: 6px; height: 6px; border-radius: 50%; background: {{accent}};"></span>
         <span>Seguridad ofensiva · Pruebas de penetración</span>
       </div>
-      <h1 class="mono" style="margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">Entramos primero.</h1>
-      <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #a1a1aa; max-width: 540px; text-wrap: pretty;">Pentesting manual. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.</p>
+      <h1 class="mono" style="margin: 0; font-size: 80px; line-height: 0.98; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">Un atacante de tu lado.</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #a1a1aa; max-width: 540px; text-wrap: pretty;">Pentesting. Hallazgos que tus ingenieros pueden corregir — no el volcado de un escáner.</p>
       <div style="display: flex; align-items: center; gap: 24px; margin-top: 8px;">
         <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20evaluaci%C3%B3n" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px; background: {{accent}}; color: #0a0a0c; font-size: 14px; font-weight: 600; border-radius: 4px;">
           <span>Agenda una evaluación</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg>
         </a>
-        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20informe%20de%20ejemplo" style="font-size: 14px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">Solicita un informe de ejemplo</a>
+        <a class="mono quiet" href="#report" style="font-size: 14px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">Mira cómo es el informe</a>
       </div>
     </div>
     <div class="hero-visual" style="display: flex; align-items: center; justify-content: center; width: 640px; height: 640px; justify-self: end;">
-      <canvas id="glyph-sphere-es" ref="{{canvasRef}}" width="640" height="640" style="width: 640px; height: 640px; display: block; cursor: crosshair;"></canvas>
+      <canvas id="glyph-sphere-es" aria-hidden="true" ref="{{canvasRef}}" width="640" height="640" style="width: 640px; height: 640px; display: block; cursor: crosshair;"></canvas>
     </div>
   </section>
 
-  <div class="mono" style="display: flex; align-items: center; gap: 14px; flex: none; padding: 14px 64px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12.5px; color: #8b8b94; letter-spacing: 0.02em;">
+  <div class="mono" style="display: flex; align-items: center; gap: 14px; padding: 14px 64px; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 12.5px; color: #8b8b94; letter-spacing: 0.02em;">
     <span style="color: {{accent}};">yoku@ops:~$</span>
     <span>scope --web --api --cloud --network --red-team</span>
     <span class="cursor" style="display: block; width: 8px; height: 14px; background: {{accent}};"></span>
     <a class="mono navlink" href="mailto:yoku@chrom.ar" style="margin-left: auto; color: #5c5c66;">yoku@chrom.ar</a>
   </div>
 
+  <section id="services" style="display: flex; flex-direction: column; gap: 36px; padding: 72px 64px 64px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;">
+      <h2 class="mono" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Todo lo que un atacante tocaría.</h2>
+      <p class="mono" style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5c5c66; max-width: 360px; text-align: right;">También a pedido: apps móviles, clientes de escritorio, IoT, revisión de código.</p>
+    </div>
+    <div class="grid-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;">
+      <article style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Web y APIs</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #8b8b94;">Autenticación, lógica de negocio, inyección — y los endpoints que nadie recuerda.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Cloud e infraestructura</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #8b8b94;">IAM, Kubernetes, secretos de CI/CD y almacenamiento en AWS, GCP y Azure.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Red externa e interna</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #8b8b94;">Del perímetro al administrador de dominio, como se mueve un intruso.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Red team</h3>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #8b8b94;">Operaciones por objetivos que prueban si alguien se da cuenta.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="approach" style="display: flex; flex-direction: column; gap: 36px; padding: 64px; background: #0d0d10; border-top: 1px solid rgba(255,255,255,0.08);">
+    <h2 class="mono" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Sin caja negra. Ves lo que vemos.</h2>
+    <div class="grid-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Alcance</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Una llamada para definir objetivos, reglas y cuentas. Presupuesto acordado de entrada.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Testeo</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Testeo manual. Lo crítico se avisa apenas se confirma.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Informe</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Severidad, reproducción, evidencia y corrección — por hallazgo.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Retesteo</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Verificamos tus correcciones y actualizamos el informe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="report" class="report" style="display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 56px; align-items: center; padding: 64px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <div style="display: flex; flex-direction: column; gap: 22px; max-width: 540px;">
+      <h2 class="mono" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Un informe que tus ingenieros sí van a leer.</h2>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div style="display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+          <span style="font-size: 15px; line-height: 1.5; color: #d4d4d8;">Severidad e impacto de negocio, explicados</span>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+          <span style="font-size: 15px; line-height: 1.5; color: #d4d4d8;">Pasos de reproducción y evidencia</span>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+          <span style="font-size: 15px; line-height: 1.5; color: #d4d4d8;">Una corrección concreta por hallazgo</span>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+          <span style="font-size: 15px; line-height: 1.5; color: #d4d4d8;">Un resumen ejecutivo listo para auditores</span>
+        </div>
+      </div>
+      <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20informe%20de%20ejemplo" style="align-self: flex-start; font-size: 14px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">Solicita un informe de ejemplo</a>
+    </div>
+
+    <div class="report-card" style="display: flex; flex-direction: column; width: 560px; background: #101013; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; overflow: hidden;">
+      <div class="mono" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 12px; letter-spacing: 0.06em; color: #8b8b94;">
+        <span>HALLAZGO · YK-0142</span>
+        <span style="padding: 3px 8px; border: 1px dashed rgba(255,255,255,0.25); border-radius: 3px; font-size: 10px; letter-spacing: 0.14em; color: #8b8b94;">EJEMPLO</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 20px 18px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="mono" style="padding: 4px 8px; border-radius: 3px; background: rgba(255,92,92,0.14); color: #ff6b6b; font-size: 11px; font-weight: 600; letter-spacing: 0.1em;">CRÍTICA</span>
+          <span class="mono" style="font-size: 12px; color: #8b8b94;">CVSS 9.1</span>
+          <span class="mono" style="font-size: 12px; color: #8b8b94;">CWE-639</span>
+        </div>
+        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.35;">Fallo de autorización a nivel de objeto en la exportación de facturas</h3>
+        <div class="mono" style="font-size: 12.5px; padding: 9px 11px; background: #0a0a0c; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: {{accent}};">GET /api/v2/invoices/&#123;id&#125;/export</div>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #a1a1aa;">Cualquier usuario autenticado puede descargar facturas de otros tenants cambiando el id. Los ids son secuenciales: toda la base de clientes puede enumerarse.</p>
+        <div class="mono" style="display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.65; color: #8b8b94;">
+          <span style="color: #5c5c66;">— Reproducción</span>
+          <span>1. Autentícate como tenant A</span>
+          <span>2. Pide la factura 48213 (tenant B)</span>
+          <span>3. El servidor devuelve el PDF del tenant B — 200 OK</span>
+        </div>
+        <div class="mono" style="display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.65; color: #8b8b94;">
+          <span style="color: #5c5c66;">— Corrección</span>
+          <span>Exigir verificación de propiedad del lado del servidor en cada acceso.</span>
+        </div>
+      </div>
+      <div class="mono" style="display: flex; align-items: center; gap: 10px; padding: 11px 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8b8b94;">
+        <span style="display: block; width: 7px; height: 7px; border-radius: 50%; background: #ff6b6b;"></span>
+        <span>Abierto · reportado el día 2 de 10 · retesteo pendiente</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="display: flex; align-items: center; justify-content: space-between; gap: 48px; padding: 72px 64px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <h2 class="mono" style="margin: 0; font-size: 44px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">Descubre qué encontrarían.</h2>
+    <div style="display: flex; align-items: center; gap: 24px; flex: none;">
+      <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Solicitud%20de%20evaluaci%C3%B3n" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px; background: {{accent}}; color: #0a0a0c; font-size: 14px; font-weight: 600; border-radius: 4px;">
+        <span>Agenda una evaluación</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg>
+      </a>
+      <a class="mono quiet" href="mailto:yoku@chrom.ar" style="font-size: 14px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">yoku@chrom.ar</a>
+    </div>
+  </section>
+
+  <footer style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 64px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <a href="#" class="mono" style="display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;">
+      <span style="display: block; width: 8px; height: 8px; background: {{accent}};"></span>
+      <span>YOKU</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 28px;">
+      <a class="mono navlink" href="#services" style="font-size: 12px; color: #8b8b94;">Servicios</a>
+      <a class="mono navlink" href="#approach" style="font-size: 12px; color: #8b8b94;">Método</a>
+      <a class="mono navlink" href="#report" style="font-size: 12px; color: #8b8b94;">Informe</a>
+      <a class="mono navlink" href="#contact" style="font-size: 12px; color: #8b8b94;">Contacto</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <a class="mono navlink" href="mailto:yoku@chrom.ar" style="font-size: 12px; color: #8b8b94;">yoku@chrom.ar</a>
+      <span class="mono" style="font-size: 12px; color: #5c5c66;">© 2026 Yoku</span>
+    </div>
+  </footer>
+
 </div>
 </x-dc>
-<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":1440,"height":900}}'>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":1440,"height":2340}}'>
 class Component extends DCLogic {
   componentDidMount() {
     this._alive = true;

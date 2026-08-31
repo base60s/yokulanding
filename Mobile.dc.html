@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600">
   <style>
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; background: #0a0a0c; }
     body { color: #ededf0; font-family: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
     a { color: #ededf0; text-decoration: none; }
     a:hover { color: #ffffff; }
+    ::selection { background: rgba(243,185,66,0.28); color: #0a0a0c; }
     .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
     .btn { transition: filter 160ms ease, transform 160ms ease; }
     .btn:hover { filter: brightness(1.08); }
@@ -23,53 +25,178 @@
     .quiet:hover { color: #ededf0 !important; border-color: #ededf0 !important; }
     @keyframes yk-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
     .cursor { animation: yk-blink 1.1s steps(1) infinite; }
-    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
   </style>
 </helmet>
 
-<div lang="en" style="display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 430px; background: #0a0a0c; color: #ededf0; overflow: hidden;">
+<div lang="en" style="background: #0a0a0c; color: #ededf0;">
 
-  <header style="display: flex; align-items: center; justify-content: space-between; height: 56px; flex: none; padding: 0 20px; border-bottom: 1px solid rgba(255,255,255,0.08);">
-    <a href="#" class="mono" style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em;">
+  <header style="display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 20px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+    <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em;">
       <span style="display: block; width: 9px; height: 9px; background: {{accent}};"></span>
       <span>YOKU</span>
     </a>
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a class="mono navlink" href="#" style="font-size: 12px; color: #8b8b94; letter-spacing: 0.02em;">ES</a>
       <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Assessment%20request" style="display: inline-flex; align-items: center; height: 40px; padding: 0 14px; background: {{accent}}; color: #0a0a0c; font-size: 12px; font-weight: 600; border-radius: 4px;">Book a pentest</a>
-      <a href="#" aria-label="Menu" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: #ededf0;">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14"></path><path d="M3 10h14"></path><path d="M3 14h14"></path></svg>
-      </a>
     </div>
   </header>
 
-  <section style="flex: 1; display: flex; flex-direction: column; gap: 20px; padding: 32px 20px 20px;">
+  <section style="display: flex; flex-direction: column; gap: 20px; padding: 36px 20px 28px;">
     <div class="mono" style="display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8b8b94;">
       <span style="display: block; width: 6px; height: 6px; border-radius: 50%; background: {{accent}};"></span>
       <span>Offensive security · Pentesting</span>
     </div>
-    <h1 class="mono" style="margin: 0; font-size: 48px; line-height: 0.98; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">We get in first.</h1>
-    <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">Manual pentesting. Findings your engineers can fix — not a scanner export.</p>
+    <h1 class="mono" style="margin: 0; font-size: 46px; line-height: 0.98; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">An attacker on your side.</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">Pentesting. Findings your engineers can fix — not a scanner export.</p>
     <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 2px;">
       <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Assessment%20request" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 22px; background: {{accent}}; color: #0a0a0c; font-size: 14px; font-weight: 600; border-radius: 4px;">
         <span>Book an assessment</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg>
       </a>
-      <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Sample%20report%20request" style="align-self: flex-start; font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">Request a sample report</a>
+      <a class="mono quiet" href="#report" style="align-self: flex-start; font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">See what a report looks like</a>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center; width: 300px; height: 300px; margin: auto auto 0;">
-      <canvas id="glyph-sphere-m-en" ref="{{canvasRef}}" width="300" height="300" style="width: 300px; height: 300px; display: block; cursor: crosshair;"></canvas>
+    <div style="display: flex; align-items: center; justify-content: center; width: 320px; height: 320px; margin: 12px auto 0;">
+      <canvas id="glyph-sphere-m-en" aria-hidden="true" ref="{{canvasRef}}" width="320" height="320" style="width: 320px; height: 320px; display: block; cursor: crosshair;"></canvas>
     </div>
   </section>
 
-  <div class="mono" style="display: flex; align-items: center; gap: 10px; flex: none; padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8b8b94; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden;">
+  <div class="mono" style="display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8b8b94; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden;">
     <span style="color: {{accent}};">yoku@ops:~$</span>
     <span>scope --web --api --cloud</span>
     <span class="cursor" style="display: block; width: 7px; height: 13px; background: {{accent}};"></span>
   </div>
 
+  <section id="services" style="display: flex; flex-direction: column; gap: 22px; padding: 52px 20px 44px;">
+    <h2 class="mono" style="margin: 0; font-size: 29px; line-height: 1.08; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Everything an attacker would touch.</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <article style="display: flex; flex-direction: column; gap: 7px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Web apps &amp; APIs</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Auth, business logic, injection — and the endpoints nobody remembers.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 7px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Cloud &amp; infrastructure</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">IAM, Kubernetes, CI/CD secrets and storage on AWS, GCP and Azure.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 7px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">External &amp; internal network</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">From the perimeter to domain admin, the way an intruder moves.</p>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 7px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Red team</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Objective-based operations that test whether anyone notices.</p>
+      </article>
+    </div>
+    <p class="mono" style="margin: 0; font-size: 11.5px; line-height: 1.6; color: #5c5c66;">Also on request: mobile apps, thick clients, IoT, code review.</p>
+  </section>
+
+  <section id="approach" style="display: flex; flex-direction: column; gap: 22px; padding: 52px 20px; background: #0d0d10; border-top: 1px solid rgba(255,255,255,0.08);">
+    <h2 class="mono" style="margin: 0; font-size: 29px; line-height: 1.08; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">No black box. You see what we see.</h2>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 13px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.3; color: {{accent}};">Scope</h3>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #8b8b94;">One call to set targets, rules and accounts. Quote agreed up front.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 13px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.3; color: {{accent}};">Test</h3>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #8b8b94;">Manual testing. Critical findings flagged as soon as we confirm them.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 13px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.3; color: {{accent}};">Report</h3>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #8b8b94;">Severity, reproduction, evidence and the fix — per finding.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 13px; border-top: 1px solid rgba(255,255,255,0.14);">
+        <h3 class="mono" style="margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.3; color: {{accent}};">Retest</h3>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #8b8b94;">We verify your fixes and update the report.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="report" style="display: flex; flex-direction: column; gap: 20px; padding: 52px 20px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <h2 class="mono" style="margin: 0; font-size: 29px; line-height: 1.08; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">A report your engineers will actually read.</h2>
+    <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1);">
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+        <span style="font-size: 13.5px; line-height: 1.5; color: #d4d4d8;">Severity and business impact, spelled out</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+        <span style="font-size: 13.5px; line-height: 1.5; color: #d4d4d8;">Reproduction steps and evidence</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+        <span style="font-size: 13.5px; line-height: 1.5; color: #d4d4d8;">A concrete fix for every finding</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 3px; color: {{accent}};"><path d="M3 8.5l3 3 7-7"></path></svg>
+        <span style="font-size: 13.5px; line-height: 1.5; color: #d4d4d8;">An executive summary you can hand to auditors</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; background: #101013; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; overflow: hidden;">
+      <div class="mono" style="display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 10.5px; letter-spacing: 0.06em; color: #8b8b94;">
+        <span>FINDING · YK-0142</span>
+        <span style="padding: 3px 7px; border: 1px dashed rgba(255,255,255,0.25); border-radius: 3px; font-size: 9px; letter-spacing: 0.14em; color: #8b8b94;">SAMPLE</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 16px 14px;">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span class="mono" style="padding: 3px 7px; border-radius: 3px; background: rgba(255,92,92,0.14); color: #ff6b6b; font-size: 10px; font-weight: 600; letter-spacing: 0.1em;">CRITICAL</span>
+          <span class="mono" style="font-size: 11px; color: #8b8b94;">CVSS 9.1</span>
+          <span class="mono" style="font-size: 11px; color: #8b8b94;">CWE-639</span>
+        </div>
+        <h3 class="mono" style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4;">Broken object-level authorization on invoice export</h3>
+        <div class="mono" style="font-size: 11px; padding: 8px 10px; background: #0a0a0c; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: {{accent}}; overflow-x: auto; white-space: nowrap;">GET /api/v2/invoices/&#123;id&#125;/export</div>
+        <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #a1a1aa;">Any authenticated user can download other tenants&#39; invoices by changing the id. Ids are sequential — the whole customer base can be enumerated.</p>
+        <div class="mono" style="display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 1.65; color: #8b8b94;">
+          <span style="color: #5c5c66;">— Reproduction</span>
+          <span>1. Authenticate as tenant A</span>
+          <span>2. Request invoice 48213 (tenant B)</span>
+          <span>3. Server returns tenant B's PDF — 200 OK</span>
+        </div>
+        <div class="mono" style="display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 1.65; color: #8b8b94;">
+          <span style="color: #5c5c66;">— Fix</span>
+          <span>Enforce server-side ownership checks on every object access.</span>
+        </div>
+      </div>
+      <div class="mono" style="display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 10.5px; color: #8b8b94;">
+        <span style="display: block; width: 6px; height: 6px; border-radius: 50%; background: #ff6b6b;"></span>
+        <span>Open · reported day 2 of 10 · retest pending</span>
+      </div>
+    </div>
+    <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Sample%20report%20request" style="align-self: flex-start; font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">Request a sample report</a>
+  </section>
+
+  <section id="contact" style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding: 56px 20px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <h2 class="mono" style="margin: 0; font-size: 33px; line-height: 1.05; font-weight: 600; letter-spacing: -0.035em; text-wrap: balance;">Find out what they'd find.</h2>
+    <a class="mono btn" href="mailto:yoku@chrom.ar?subject=Assessment%20request" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 22px; background: {{accent}}; color: #0a0a0c; font-size: 14px; font-weight: 600; border-radius: 4px; align-self: stretch; margin-top: 4px;">
+      <span>Book an assessment</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg>
+    </a>
+    <a class="mono quiet" href="mailto:yoku@chrom.ar" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;">yoku@chrom.ar</a>
+  </section>
+
+  <footer style="display: flex; flex-direction: column; gap: 14px; padding: 28px 20px 36px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;">
+        <span style="display: block; width: 8px; height: 8px; background: {{accent}};"></span>
+        <span>YOKU</span>
+      </a>
+      <a class="mono navlink" href="mailto:yoku@chrom.ar" style="font-size: 12px; color: #8b8b94;">yoku@chrom.ar</a>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <nav style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <a class="mono navlink" href="#services" style="font-size: 11.5px; color: #8b8b94;">Services</a>
+        <a class="mono navlink" href="#approach" style="font-size: 11.5px; color: #8b8b94;">Approach</a>
+        <a class="mono navlink" href="#report" style="font-size: 11.5px; color: #8b8b94;">Report</a>
+        <a class="mono navlink" href="#contact" style="font-size: 11.5px; color: #8b8b94;">Contact</a>
+      </nav>
+      <span class="mono" style="font-size: 11.5px; color: #5c5c66;">© 2026 Yoku</span>
+    </div>
+  </footer>
+
 </div>
 </x-dc>
-<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":390,"height":900}}'>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":390,"height":3460}}'>
 class Component extends DCLogic {
   componentDidMount() {
     this._alive = true;
