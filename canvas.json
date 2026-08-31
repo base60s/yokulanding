@@ -1,12 +1,12 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 2340, "expand": "fill" },
-    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 1560, "y": 0, "w": 1440, "h": 2340, "expand": "fill" },
-    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 3120, "y": 0, "w": 390, "h": 3460 },
-    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 3630, "y": 0, "w": 390, "h": 3460 }
+    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 2100, "expand": "fill" },
+    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 1560, "y": 0, "w": 1440, "h": 2100, "expand": "fill" },
+    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 3120, "y": 0, "w": 390, "h": 2820 },
+    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 3630, "y": 0, "w": 390, "h": 2820 }
   ],
   "annotations": [
-    { "id": "assumptions", "x": 0, "y": -420, "w": 1180, "text": "Full-page redesign, kept short — what to check\n\n• Hero layout unchanged — the headline is now “An attacker on your side.” / “Un atacante de tu lado.”; the page continues for about two screens: what we test, how an engagement runs, the report (with a sample finding), and a closing CTA. Plain headings, no numbered labels.\n• Nothing unverifiable, per your call: no client logos, no certifications, no invented numbers or promises. When you have real proof points we can add them.\n• The finding card is fictional and labelled SAMPLE/EJEMPLO — swap in a sanitized real one when you can show it.\n• Confirm the four service cards + the small “also on request” line match what you sell.\n• The ES/EN link in the header is decorative here; the live site wires it.\n• The old single-screen boards are in git history; the earlier long draft is in archive/." }
+    { "id": "assumptions", "x": 0, "y": -420, "w": 1180, "text": "Full-page redesign, kept short — what to check\n\n• Hero layout unchanged — the headline is now “An attacker on your side.” / “Un atacante de tu lado.”; the page continues: what we test, the report (with a sample finding), and a closing CTA. Plain headings, no numbered labels.\n• Nothing unverifiable, per your call: no client logos, no certifications, no invented numbers or promises. When you have real proof points we can add them.\n• The finding card is fictional and labelled SAMPLE/EJEMPLO — swap in a sanitized real one when you can show it.\n• Confirm the four service cards + the small “also on request” line match what you sell.\n• The ES/EN link in the header is decorative here; the live site wires it.\n• The old single-screen boards are in git history; the earlier long draft is in archive/." }
   ],
   "launch": { "view": "canvas" }
 }

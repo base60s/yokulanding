@@ -53,7 +53,6 @@
     </a>
     <nav style="display: flex; align-items: center; gap: 28px;">
       <a class="mono navlink" href="#services" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Servicios</a>
-      <a class="mono navlink" href="#approach" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Método</a>
       <a class="mono navlink" href="#report" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Informe</a>
       <a class="mono navlink" href="#contact" style="font-size: 13px; color: #8b8b94; letter-spacing: 0.02em;">Contacto</a>
       <span style="display: block; width: 1px; height: 14px; background: rgba(255,255,255,0.14);"></span>
@@ -115,27 +114,6 @@
     </div>
   </section>
 
-  <section id="approach" style="display: flex; flex-direction: column; gap: 36px; padding: 64px; background: #0d0d10; border-top: 1px solid rgba(255,255,255,0.08);">
-    <h2 class="mono" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Sin caja negra. Ves lo que vemos.</h2>
-    <div class="grid-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px;">
-      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
-        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Alcance</h3>
-        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Una llamada para definir objetivos, reglas y cuentas. Presupuesto acordado de entrada.</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
-        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Testeo</h3>
-        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Testeo manual. Lo crítico se avisa apenas se confirma.</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
-        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Informe</h3>
-        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Severidad, reproducción, evidencia y corrección — por hallazgo.</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);">
-        <h3 class="mono" style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{accent}};">Retesteo</h3>
-        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #8b8b94;">Verificamos tus correcciones y actualizamos el informe.</p>
-      </div>
-    </div>
-  </section>
 
   <section id="report" class="report" style="display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 56px; align-items: center; padding: 64px; border-top: 1px solid rgba(255,255,255,0.08);">
     <div style="display: flex; flex-direction: column; gap: 22px; max-width: 540px;">
@@ -211,7 +189,6 @@
     </a>
     <nav style="display: flex; align-items: center; gap: 28px;">
       <a class="mono navlink" href="#services" style="font-size: 12px; color: #8b8b94;">Servicios</a>
-      <a class="mono navlink" href="#approach" style="font-size: 12px; color: #8b8b94;">Método</a>
       <a class="mono navlink" href="#report" style="font-size: 12px; color: #8b8b94;">Informe</a>
       <a class="mono navlink" href="#contact" style="font-size: 12px; color: #8b8b94;">Contacto</a>
     </nav>
@@ -223,7 +200,7 @@
 
 </div>
 </x-dc>
-<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":1440,"height":2340}}'>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"glyphDensity":{"editor":"range","default":1200,"min":300,"max":2400,"step":50,"section":"Sphere"},"spinSpeed":{"editor":"range","default":1,"min":0,"max":3,"step":0.1,"section":"Sphere"},"$preview":{"width":1440,"height":2100}}'>
 class Component extends DCLogic {
   componentDidMount() {
     this._alive = true;
