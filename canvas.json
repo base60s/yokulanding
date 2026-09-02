@@ -1,12 +1,101 @@
 {
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Landing"
+    },
+    {
+      "id": "page-2",
+      "name": "Pricing options"
+    }
+  ],
   "artboards": [
-    { "file": "Main.dc.html", "title": "Landing — English", "x": 0, "y": 0, "w": 1440, "h": 2100, "expand": "fill" },
-    { "file": "MainES.dc.html", "title": "Landing — Español", "x": 1560, "y": 0, "w": 1440, "h": 2100, "expand": "fill" },
-    { "file": "Mobile.dc.html", "title": "Mobile — English", "x": 3120, "y": 0, "w": 390, "h": 2820 },
-    { "file": "MobileES.dc.html", "title": "Mobile — Español", "x": 3630, "y": 0, "w": 390, "h": 2820 }
+    {
+      "file": "Main.dc.html",
+      "title": "Landing — English",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2910,
+      "expand": "fill",
+      "page": "page-1"
+    },
+    {
+      "file": "MainES.dc.html",
+      "title": "Landing — Español",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 2970,
+      "expand": "fill",
+      "page": "page-1"
+    },
+    {
+      "file": "Mobile.dc.html",
+      "title": "Mobile — English",
+      "x": 3120,
+      "y": 0,
+      "w": 390,
+      "h": 4640,
+      "page": "page-1"
+    },
+    {
+      "file": "MobileES.dc.html",
+      "title": "Mobile — Español",
+      "x": 3630,
+      "y": 0,
+      "w": 390,
+      "h": 4770,
+      "page": "page-1"
+    },
+    {
+      "file": "PricingA.dc.html",
+      "title": "Option A — Three cards",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 800,
+      "page": "page-2"
+    },
+    {
+      "file": "PricingB.dc.html",
+      "title": "Option B — Rate card",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 660,
+      "page": "page-2"
+    },
+    {
+      "file": "PricingC.dc.html",
+      "title": "Option C — Start at 500",
+      "x": 3120,
+      "y": 0,
+      "w": 1440,
+      "h": 700,
+      "page": "page-2"
+    }
   ],
   "annotations": [
-    { "id": "assumptions", "x": 0, "y": -420, "w": 1180, "text": "Full-page redesign, kept short — what to check\n\n• Hero layout unchanged — the headline is now “An attacker on your side.” / “Un atacante de tu lado.”; the page continues: what we test, the report (with a sample finding), and a closing CTA. Plain headings, no numbered labels.\n• Nothing unverifiable, per your call: no client logos, no certifications, no invented numbers or promises. When you have real proof points we can add them.\n• The finding card is fictional and labelled SAMPLE/EJEMPLO — swap in a sanitized real one when you can show it.\n• Confirm the four service cards + the small “also on request” line match what you sell.\n• The ES/EN link in the header is decorative here; the live site wires it.\n• The old single-screen boards are in git history; the earlier long draft is in archive/." }
+    {
+      "id": "assumptions",
+      "x": 0,
+      "y": -420,
+      "w": 1180,
+      "page": "page-1",
+      "text": "Pricing built in (Option C) — what to check\n\n• New section between the report and the closing CTA; “Pricing” / “Precios” in the header and footer nav.\n• Flash: USD 500, under 5 days, up to 7 findings with fixes, unauthenticated, no retest, credited in full toward a full pentest within 90 days.\n• Tiers: Essential USD 2,900 · Standard USD 5,900 · Advanced from USD 9,500 — scope, user roles, testing days, retest window; attestation letter with every full pentest. API endpoint caps are left off the page.\n• Continuous plans as agreed today: USD 450/mo (annual Essential, re-assessment at month 6, external check between assessments, unlimited retests, letter always current) and USD 990/mo (annual Standard, re-assessment at month 6, testing after major changes, quarterly external check, unlimited retests, priority scheduling, letter always current). Advanced custom. Retests cover reported findings.\n• Decide the “fewer than 7 findings” answer for the Flash and what moves the Advanced “from”; each is one short line when you have it.\n• Spanish uses “retest” as on your pricing page; the sample finding card still says “retesteo pendiente”."
+    },
+    {
+      "id": "pricing-options",
+      "x": 0,
+      "y": -330,
+      "w": 1180,
+      "page": "page-2",
+      "text": "Pricing options — Option C was chosen on 2 Sep 2026 and built into the landing boards on the Landing page, with the Continuous plans expanded to their agreed contents. A and B are kept here for reference only."
+    }
   ],
-  "launch": { "view": "canvas" }
+  "launch": {
+    "view": "canvas",
+    "page": "page-1"
+  }
 }

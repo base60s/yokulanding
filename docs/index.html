@@ -100,6 +100,47 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
 .fmeta2 a { color: var(--muted); }
 .fmeta2 a:hover { color: var(--fg); }
 .fcopy { color: var(--dim); }
+.pricing { display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 56px 72px; align-items: start; padding: 72px 64px 64px; border-top: 1px solid var(--line); }
+.pleft { display: flex; flex-direction: column; gap: 24px; }
+.psub { margin: 0; font-size: 17px; line-height: 1.5; color: var(--soft); text-wrap: pretty; }
+.flash { display: flex; flex-direction: column; background: var(--card); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; overflow: hidden; }
+.ftag.solid { border-style: solid; border-color: rgba(255,255,255,0.18); }
+.flash-body { display: flex; flex-direction: column; gap: 16px; padding: 20px 18px; }
+.flash-price { display: flex; align-items: baseline; gap: 14px; }
+.big { font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
+.once { font-size: 12.5px; color: var(--muted); }
+.flash .check { padding: 11px 0; }
+.flash-note { margin: 0; font-size: 12px; line-height: 1.6; color: var(--dim); }
+.fdot.gold { background: var(--accent); }
+.pleft .btn-primary { align-self: flex-start; }
+.pright { display: flex; flex-direction: column; gap: 20px; padding-top: 6px; }
+.phead { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+.phead h3, .cont h3 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+.pnote { font-size: 12.5px; color: var(--dim); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tiers { width: 100%; table-layout: fixed; border-collapse: collapse; border-top: 1px solid var(--line2); font-size: 13px; line-height: 1.5; }
+.tiers col.lbl { width: 120px; }
+.tiers th, .tiers td { text-align: left; vertical-align: top; padding: 13px 24px 13px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 400; color: var(--body); }
+.tiers th:last-child, .tiers td:last-child { padding-right: 0; }
+.tiers tbody th { color: var(--muted); }
+.tiers thead td, .tiers thead th { padding: 16px 24px 16px 0; border-bottom: 1px solid var(--line2); vertical-align: bottom; }
+.tname { display: block; font-size: 15px; font-weight: 600; color: var(--fg); }
+.tprice { display: block; margin-top: 4px; font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
+.tiers tfoot td { padding: 18px 24px 0 0; border-bottom: 0; }
+.tiers tfoot td:last-child { padding-right: 0; }
+.ghost { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 18px; border: 1px solid rgba(255,255,255,0.18); color: var(--fg); font-size: 13px; font-weight: 600; border-radius: 4px; transition: border-color 160ms ease, color 160ms ease; }
+.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
+.tiers tfoot .ghost { width: 100%; }
+.tier-cards { display: none; }
+.cont { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 20px 24px; background: var(--card); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; }
+.cont-copy { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.cont-copy p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+.cont-prices { display: flex; align-items: center; gap: 32px; flex: none; }
+.cont-prices > div { display: flex; flex-direction: column; gap: 3px; }
+.cl { font-size: 12px; color: var(--muted); }
+.cp { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
+.cont-cta { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 18px; border: 1px solid rgba(255,255,255,0.18); color: var(--fg); font-size: 13px; font-weight: 600; border-radius: 4px; flex: none; transition: border-color 160ms ease, color 160ms ease; }
+.cont-cta:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
 @media (max-width: 1280px) {
   .hero { grid-template-columns: minmax(0, 1fr) 520px; }
@@ -107,11 +148,15 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
   h1 { font-size: 64px; }
 }
 @media (max-width: 1180px) {
+  .pricing { grid-template-columns: minmax(0, 1fr); }
+  .pleft { max-width: 640px; }
   .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .report { grid-template-columns: minmax(0, 1fr); }
   .fcard { width: auto; max-width: 640px; }
 }
 @media (max-width: 980px) {
+  .cont { flex-wrap: wrap; }
+  .cont-copy { flex-basis: 100%; }
   .hero { grid-template-columns: minmax(0, 1fr); }
   .visual { justify-self: center; }
   .svc-head { flex-direction: column; align-items: flex-start; gap: 14px; }
@@ -119,6 +164,40 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
   .cta { flex-direction: column; align-items: flex-start; gap: 24px; }
 }
 @media (max-width: 640px) {
+  .pricing { gap: 20px; padding: 52px 20px; }
+  .pleft { gap: 20px; max-width: none; }
+  .psub { font-size: 15px; }
+  .flash-body { gap: 14px; padding: 16px 14px; }
+  .flash-price { gap: 12px; }
+  .big { font-size: 36px; }
+  .once { font-size: 11.5px; }
+  .flash .check { gap: 12px; padding: 10px 0; }
+  .flash-note { font-size: 11px; }
+  .pleft .btn-primary { align-self: stretch; justify-content: center; }
+  .pright { gap: 14px; padding-top: 0; }
+  .phead { margin-top: 12px; gap: 16px; }
+  .phead h3, .cont h3 { font-size: 16.5px; }
+  .pnote { font-size: 11px; text-align: right; }
+  .tiers { display: none; }
+  .tier-cards { display: flex; flex-direction: column; gap: 14px; }
+  .tier { display: flex; flex-direction: column; gap: 12px; padding: 18px 14px; background: var(--card); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; }
+  .tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .tier-head .tname { font-size: 16.5px; }
+  .tier-head .tprice { margin: 0; }
+  .tier-rows { display: flex; flex-direction: column; margin: 0; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; line-height: 1.5; }
+  .tier-rows > div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .tier-rows dt { color: var(--muted); }
+  .tier-rows dd { margin: 0; color: var(--body); text-align: right; }
+  .cont { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 14px; margin-top: 12px; }
+  .cont-copy { display: contents; }
+  .cont h3 { order: 0; }
+  .cont-prices { order: 1; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12.5px; }
+  .cont-prices > div { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .cl { font-size: 12.5px; color: var(--body); }
+  .cp { font-size: 12.5px; }
+  .cont-copy p { order: 2; font-size: 13px; }
+  .cont-cta { order: 3; align-self: flex-start; height: auto; padding: 0 0 2px; border: 0; border-bottom: 1px solid rgba(255,255,255,0.18); border-radius: 0; color: var(--muted); font-weight: 400; }
+  .cont-cta:hover { color: var(--fg); border-color: var(--fg); }
   .hide-m { display: none; }
   .nav { height: 56px; padding: 0 20px; }
   .brand { font-size: 14px; gap: 9px; }
@@ -176,6 +255,7 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
     <nav class="links">
       <a class="mono navlink hide-m" href="#services">Services</a>
       <a class="mono navlink hide-m" href="#report">Report</a>
+      <a class="mono navlink hide-m" href="#pricing">Pricing</a>
       <a class="mono navlink hide-m" href="#contact">Contact</a>
       <span class="divider hide-m"></span>
       <a class="mono navlink" href="es/" hreflang="es" lang="es">ES</a>
@@ -253,6 +333,51 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
     </div>
   </section>
 
+  <section class="pricing" id="pricing">
+    <div class="pleft">
+      <h2 class="mono">Start at USD 500.</h2>
+      <p class="psub">A Flash diagnostic: what an attacker sees from outside, in under 5 days.</p>
+      <div class="flash">
+        <div class="fhead mono"><span>FLASH DIAGNOSTIC</span><span class="ftag solid">UNDER 5 DAYS</span></div>
+        <div class="flash-body">
+          <div class="flash-price"><span class="big mono">USD 500</span><span class="once mono">one-time</span></div>
+          <div class="checks">
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>Public web and exposed APIs</span></div>
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>Up to 7 findings, each with a fix</span></div>
+        <div class="check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"></path></svg><span>Executive summary and a call</span></div>
+          </div>
+          <p class="flash-note mono">Unauthenticated. No retest.</p>
+        </div>
+        <div class="fstatus mono"><span class="fdot gold"></span><span>Credited in full toward a full pentest within 90 days</span></div>
+      </div>
+      <a class="mono btn btn-primary" href="mailto:yoku@chrom.ar?subject=Flash%20diagnostic"><span>Book a Flash</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"></path><path d="M9 4l4 4-4 4"></path></svg></a>
+    </div>
+    <div class="pright">
+      <div class="phead"><h3 class="mono">Full pentests</h3><span class="pnote mono">Attestation letter included</span></div>
+      <table class="tiers mono">
+        <caption class="sr">Full pentests, side by side</caption>
+        <colgroup><col class="lbl"><col><col><col></colgroup>
+        <thead><tr><td></td><th scope="col"><span class="tname">Essential</span><span class="tprice">USD 2,900</span></th><th scope="col"><span class="tname">Standard</span><span class="tprice">USD 5,900</span></th><th scope="col"><span class="tname">Advanced</span><span class="tprice">from USD 9,500</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Scope</th><td>1 web app or API</td><td>Web app + API</td><td>Web + API + cloud or network</td></tr>
+          <tr><th scope="row">User roles</th><td>up to 2</td><td>up to 4</td><td>unlimited</td></tr>
+          <tr><th scope="row">Testing</th><td>4–5 days</td><td>8–10 days</td><td>12–15 days</td></tr>
+          <tr><th scope="row">Retest</th><td>criticals · 30 days</td><td>full · 60 days</td><td>full · 90 days</td></tr>
+        </tbody>
+        <tfoot><tr><td></td><td><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Essential%20pentest">Book</a></td><td><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Standard%20pentest">Book</a></td><td><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Advanced%20pentest">Get a quote</a></td></tr></tfoot>
+      </table>
+      <div class="tier-cards">
+        <article class="tier"><div class="tier-head"><span class="tname mono">Essential</span><span class="tprice mono">USD 2,900</span></div><dl class="tier-rows mono"><div><dt>Scope</dt><dd>1 web app or API</dd></div><div><dt>User roles</dt><dd>up to 2</dd></div><div><dt>Testing</dt><dd>4–5 days</dd></div><div><dt>Retest</dt><dd>criticals · 30 days</dd></div></dl><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Essential%20pentest">Book</a></article>
+        <article class="tier"><div class="tier-head"><span class="tname mono">Standard</span><span class="tprice mono">USD 5,900</span></div><dl class="tier-rows mono"><div><dt>Scope</dt><dd>Web app + API</dd></div><div><dt>User roles</dt><dd>up to 4</dd></div><div><dt>Testing</dt><dd>8–10 days</dd></div><div><dt>Retest</dt><dd>full · 60 days</dd></div></dl><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Standard%20pentest">Book</a></article>
+        <article class="tier"><div class="tier-head"><span class="tname mono">Advanced</span><span class="tprice mono">from USD 9,500</span></div><dl class="tier-rows mono"><div><dt>Scope</dt><dd>Web + API + cloud or network</dd></div><div><dt>User roles</dt><dd>unlimited</dd></div><div><dt>Testing</dt><dd>12–15 days</dd></div><div><dt>Retest</dt><dd>full · 90 days</dd></div></dl><a class="mono ghost" href="mailto:yoku@chrom.ar?subject=Advanced%20pentest">Get a quote</a></article>
+      </div>
+    </div>
+    <div class="cont">
+      <div class="cont-copy"><h3 class="mono">Continuous</h3><p>Yearly pentest, re-assessment at month 6, unlimited retests. One fixed monthly fee.</p></div>
+      <div class="cont-prices mono"><div><span class="cl">Essential</span><span class="cp">USD 450/mo</span></div><div><span class="cl">Standard</span><span class="cp">USD 990/mo</span></div><div><span class="cl">Advanced</span><span class="cp">custom</span></div></div>
+      <a class="mono cont-cta" href="mailto:yoku@chrom.ar?subject=Continuous%20plans">Ask</a>
+    </div>
+  </section>
   <section class="cta" id="contact">
     <h2 class="mono">Find out what they'd find.</h2>
     <div class="cta-actions">
@@ -267,6 +392,7 @@ h2 { margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spa
     <nav class="flinks">
       <a class="mono" href="#services">Services</a>
       <a class="mono" href="#report">Report</a>
+      <a class="mono" href="#pricing">Pricing</a>
       <a class="mono" href="#contact">Contact</a>
     </nav>
     <div class="fmeta2 mono">

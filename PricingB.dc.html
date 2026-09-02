@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600">
+  <style>
+    html, body { margin: 0; background: #0a0a0c; }
+    body { color: #ededf0; font-family: "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #ededf0; text-decoration: none; }
+    a:hover { color: #ffffff; }
+    ::selection { background: rgba(243,185,66,0.28); color: #0a0a0c; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; }
+    .quiet:hover { color: #ededf0 !important; border-color: #ededf0 !important; }
+    @media (max-width: 1180px) {
+      .row { grid-template-columns: 200px minmax(0, 1fr) 184px 60px !important; gap: 20px !important; }
+    }
+  </style>
+</helmet>
+
+<div lang="en" style="background: #0a0a0c; color: #ededf0;">
+
+  <section id="pricing" style="display: flex; flex-direction: column; gap: 36px; padding: 72px 64px 64px; border-top: 1px solid rgba(255,255,255,0.08);">
+
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 class="mono" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance;">Prices up front.</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">What it costs. What it includes. No third meeting.</p>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.14);">
+
+      <div class="row" style="display: grid; grid-template-columns: 260px minmax(0, 1fr) 190px 60px; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Flash diagnostic</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">External surface, unauthenticated. Up to 7 findings with fixes, in under 5 days.</p>
+        <span class="mono" style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: {{accent}}; text-align: right; white-space: nowrap;">USD 500</span>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Flash%20diagnostic" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; justify-self: end;">Book</a>
+      </div>
+
+      <div class="row" style="display: grid; grid-template-columns: 260px minmax(0, 1fr) 190px 60px; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Essential pentest</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">One web app or API, up to 2 user roles. 4–5 days. Critical findings retested within 30 days.</p>
+        <span class="mono" style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: {{accent}}; text-align: right; white-space: nowrap;">USD 2,900</span>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Essential%20pentest" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; justify-self: end;">Book</a>
+      </div>
+
+      <div class="row" style="display: grid; grid-template-columns: 260px minmax(0, 1fr) 190px 60px; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Standard pentest</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">Web app + API, up to 4 user roles. 8–10 days. Full retest within 60 days.</p>
+        <span class="mono" style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: {{accent}}; text-align: right; white-space: nowrap;">USD 5,900</span>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Standard%20pentest" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; justify-self: end;">Book</a>
+      </div>
+
+      <div class="row" style="display: grid; grid-template-columns: 260px minmax(0, 1fr) 190px 60px; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Advanced pentest</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">Web, API and cloud or network, unlimited user roles. 12–15 days. Full retest within 90 days.</p>
+        <span class="mono" style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: {{accent}}; text-align: right; white-space: nowrap;">from USD 9,500</span>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Advanced%20pentest" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; justify-self: end;">Quote</a>
+      </div>
+
+      <div class="row" style="display: grid; grid-template-columns: 260px minmax(0, 1fr) 190px 60px; gap: 32px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h3 class="mono" style="margin: 0; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;">Continuous</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #a1a1aa; text-wrap: pretty;">The same pentest every year, unlimited retests, one fixed monthly fee.</p>
+        <span class="mono" style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: {{accent}}; text-align: right; white-space: nowrap;">from USD 450/mo</span>
+        <a class="mono quiet" href="mailto:yoku@chrom.ar?subject=Monthly%20plans" style="font-size: 13px; color: #8b8b94; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; justify-self: end;">Ask</a>
+      </div>
+
+    </div>
+
+    <p class="mono" style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5c5c66;">Attestation letter with every full pentest · Flash credited in full toward one within 90 days</p>
+
+  </section>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#f3b942","options":["#f3b942","#7ee2a0","#ff6b6b","#7cd4f5"],"section":"Brand"},"$preview":{"width":1440,"height":660}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent || '#f3b942' };
+  }
+}
+</script>
+</body>
+</html>
