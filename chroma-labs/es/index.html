@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chroma Labs</title>
-<meta name="description" content="Chroma Labs. We find the weak spots before they take root.">
+<meta name="description" content="Chroma Labs. Encontramos los puntos débiles antes de que echen raíces.">
 <meta name="theme-color" content="#4a4d44">
 <meta property="og:title" content="Chroma Labs">
-<meta property="og:description" content="We find the weak spots before they take root.">
+<meta property="og:description" content="Encontramos los puntos débiles antes de que echen raíces.">
 <meta property="og:type" content="website">
 <link rel="alternate" hreflang="en" href="https://base60s.github.io/chroma-labs/">
 <link rel="alternate" hreflang="es" href="https://base60s.github.io/chroma-labs/es/">
@@ -41,7 +41,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* The living scene fills the viewport; the copy floats above it and lets the pointer through. */
+  /* La escena viva ocupa la pantalla; el texto flota encima y deja pasar el puntero. */
   .scene { position: fixed; inset: 0; background: var(--ground); }
   .scene-frame {
     position: absolute; inset: 0;
@@ -80,14 +80,14 @@
 
   .lede {
     margin: clamp(18px, 2.6vw, 34px) 0 0 0.08em;
-    max-width: 28ch;
+    max-width: 32ch;
     font-size: clamp(17px, 1.35vw, 21px);
     font-weight: 300;
     line-height: 1.4;
     color: var(--ink-soft);
   }
 
-  /* The two products, as plain links under the copy. */
+  /* Los dos productos, como enlaces simples debajo del texto. */
   .products {
     display: flex;
     flex-wrap: wrap;
@@ -107,7 +107,7 @@
   .products a:hover { border-bottom-color: var(--lichen); }
   .products a:focus-visible { outline: 2px solid var(--lichen); outline-offset: 4px; border-radius: 2px; }
 
-  /* Scene credit, small, at the foot of the page. */
+  /* Crédito de la escena, chico, al pie de la página. */
   .colophon {
     position: absolute;
     right: var(--gutter);
@@ -130,7 +130,7 @@
   .colophon a:hover { color: var(--ink-soft); border-bottom-color: rgba(244, 243, 238, 0.32); }
   .colophon a:focus-visible { outline: 2px solid var(--lichen); outline-offset: 4px; border-radius: 2px; }
 
-  /* Language switch, mirrored top-left. */
+  /* Cambio de idioma, espejo arriba a la izquierda. */
   .lang {
     position: absolute;
     top: max(18px, calc(env(safe-area-inset-top, 0px) + 14px));
@@ -150,7 +150,7 @@
   .lang a:hover { color: var(--ink-soft); border-bottom-color: rgba(244, 243, 238, 0.32); }
   .lang a:focus-visible { outline: 2px solid var(--lichen); outline-offset: 4px; border-radius: 2px; }
 
-  /* One entrance, once the scene is up. */
+  /* Una sola entrada, cuando la escena ya está. */
   .reveal {
     opacity: 0;
     transform: translateY(14px);
@@ -181,20 +181,20 @@
 <body>
 
 <div class="scene" aria-hidden="true">
-  <iframe id="scene" class="scene-frame" src="scene/living-green.html" title="Living moss world" tabindex="-1" loading="eager"></iframe>
+  <iframe id="scene" class="scene-frame" src="../scene/living-green.html" title="Mundo de musgo vivo" tabindex="-1" loading="eager"></iframe>
 </div>
 
 <main class="ui" id="ui">
-  <nav class="lang reveal" aria-label="Language">
-    <a href="es/" hreflang="es" lang="es">Español</a>
+  <nav class="lang reveal" aria-label="Idioma">
+    <a href="../" hreflang="en" lang="en">English</a>
   </nav>
 
   <div class="copy" id="copy">
     <div class="reveal">
       <h1 class="title"><span>Chroma</span><span>Labs</span></h1>
-      <p class="lede">We find the weak spots before they take root.</p>
-      <nav class="products" aria-label="Products">
-        <!-- Vora moves to https://vora.chrom.ar/ later; swap the href then. -->
+      <p class="lede">Encontramos los puntos débiles antes de que echen raíces.</p>
+      <nav class="products" aria-label="Productos">
+        <!-- Vora pasa a https://vora.chrom.ar/ más adelante; cambiar el href entonces. -->
         <a href="https://chrom.ar/">Vora</a>
         <a href="https://yoku.chrom.ar/">Yoku</a>
       </nav>
@@ -202,7 +202,7 @@
   </div>
 
   <footer class="colophon reveal">
-    <a href="https://threeui.com/three-js/sylva-living-world/living-green" rel="noopener">Scene: Sylva Living World by Meng To, MIT license</a>
+    <a href="https://threeui.com/three-js/sylva-living-world/living-green" rel="noopener">Escena: Sylva Living World de Meng To, licencia MIT</a>
   </footer>
 </main>
 
@@ -213,7 +213,7 @@
   var frame = document.getElementById('scene');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Reveal the copy once the scene document has loaded; never wait on it forever. */
+  /* Mostrar el texto cuando el documento de la escena cargó; nunca esperarlo para siempre. */
   var revealed = false;
   function reveal() {
     if (revealed) return;
@@ -225,7 +225,7 @@
 
   if (reduced) return;
 
-  /* Parallax: the scene frame owns the pointer and reports it; the copy drifts against it. */
+  /* Parallax: el marco de la escena tiene el puntero y lo reporta; el texto se desplaza en contra. */
   var target = { x: 0, y: 0 }, cur = { x: 0, y: 0 }, raf = 0;
   function step() {
     raf = 0;

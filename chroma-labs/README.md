@@ -14,7 +14,8 @@ Then visit http://127.0.0.1:4181/. There is no build step.
 
 ## Files
 
-- `index.html` — the page: title, copy, links to the two products (Vora at https://chrom.ar/ for now, later https://vora.chrom.ar/; Yoku at https://yoku.chrom.ar/), scene credit, entrance and pointer parallax. Type is Bricolage Grotesque from Google Fonts.
+- `index.html` — the English page: title, copy, links to the two products (Vora at https://chrom.ar/ for now, later https://vora.chrom.ar/; Yoku at https://yoku.chrom.ar/), scene credit, language link, entrance and pointer parallax. Type is Bricolage Grotesque from Google Fonts.
+- `es/index.html` — the Spanish page, same layout and script; only the copy, the `lang` attributes, the hreflang links and the relative paths differ. Edit both when the layout changes.
 - `scene/living-green.html` — the scene-only "Living Green" document (Sylva Living World, ThreeUI Community catalog, MIT), loaded in a full-viewport iframe. It reports the pointer position to the parent page so the copy can drift against it.
 - `scene/three.min.js` — Three.js r149 runtime used by the scene.
 - `LICENSES.md` — third-party notices.
@@ -28,9 +29,12 @@ committing changes here:
 ```bash
 # from the yokulanding checkout that holds the chroma-labs folder
 TREE=$(git rev-parse HEAD:chroma-labs)
-COMMIT=$(git commit-tree "$TREE" -m "Deploy Chroma Labs landing")
-git push https://github.com/base60s/chroma-labs.git "$COMMIT:refs/heads/main" --force
+PARENT=$(git ls-remote https://github.com/base60s/chroma-labs.git main | cut -f1)
+COMMIT=$(git commit-tree "$TREE" -p "$PARENT" -m "Deploy Chroma Labs landing")
+git push https://github.com/base60s/chroma-labs.git "$COMMIT:refs/heads/main"
 ```
+
+Each deploy is one commit on top of the previous one, so the site repo keeps a history you can roll back to.
 
 `.nojekyll` keeps Pages from running Jekyll over the folder.
 
