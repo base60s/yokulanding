@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chroma Labs</title>
+<meta name="description" content="Chroma Labs. We find the weak spots before they take root.">
+<meta name="theme-color" content="#4a4d44">
+<meta property="og:title" content="Chroma Labs">
+<meta property="og:description" content="We find the weak spots before they take root.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..500&amp;display=swap">
+<style>
+  :root {
+    --ground: #4a4d44;
+    --ink: #f4f3ee;
+    --ink-soft: rgba(244, 243, 238, 0.66);
+    --ink-faint: rgba(244, 243, 238, 0.48);
+    --lichen: #cdd8a8;
+    --gutter: clamp(20px, 5vw, 88px);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --px: 0;
+    --py: 0;
+  }
+
+  html { background: var(--ground); }
+  body {
+    margin: 0;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* The living scene fills the viewport; the copy floats above it and lets the pointer through. */
+  .scene { position: fixed; inset: 0; background: var(--ground); }
+  .scene-frame {
+    position: absolute; inset: 0;
+    display: block; width: 100%; height: 100%;
+    border: 0; background: var(--ground);
+  }
+
+  .ui { position: fixed; inset: 0; pointer-events: none; }
+
+  .copy {
+    position: absolute;
+    left: var(--gutter);
+    top: clamp(72px, 15svh, 168px);
+    max-width: calc(100vw - var(--gutter) * 2);
+    will-change: transform;
+    transform: translate3d(calc(var(--px) * -18px), calc(var(--py) * -12px), 0);
+  }
+
+  .title {
+    margin: 0;
+    font-weight: 200;
+    font-size: clamp(64px, 10.4vw, 164px);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+  }
+  .title span { display: block; }
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .title {
+      background: linear-gradient(180deg, #f7f6f1 0%, #e6ead6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  .lede {
+    margin: clamp(18px, 2.6vw, 34px) 0 0 0.08em;
+    max-width: 28ch;
+    font-size: clamp(17px, 1.35vw, 21px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  /* The two products, as plain links under the copy. */
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin: clamp(22px, 2.4vw, 32px) 0 0 0.08em;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .products a {
+    pointer-events: auto;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(244, 243, 238, 0.36);
+    transition: border-color 0.25s var(--ease-out);
+  }
+  .products a:hover { border-bottom-color: var(--lichen); }
+  .products a:focus-visible { outline: 2px solid var(--lichen); outline-offset: 4px; border-radius: 2px; }
+
+  /* Scene credit, kept up in the fog where nothing grows over it. */
+  .colophon {
+    position: absolute;
+    top: max(18px, calc(env(safe-area-inset-top, 0px) + 14px));
+    right: var(--gutter);
+    max-width: 62vw;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: right;
+    color: var(--ink-faint);
+  }
+  .colophon a {
+    pointer-events: auto;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+  }
+  .colophon a:hover { color: var(--ink-soft); border-bottom-color: rgba(244, 243, 238, 0.32); }
+  .colophon a:focus-visible { outline: 2px solid var(--lichen); outline-offset: 4px; border-radius: 2px; }
+
+  /* One entrance, once the scene is up. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+  }
+  .colophon.reveal { transition-delay: 0.35s; }
+  .is-ready .reveal { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .copy { top: clamp(72px, 13svh, 120px); }
+    .title { font-size: clamp(56px, 17vw, 84px); }
+    .lede { font-size: 17px; margin-top: 18px; }
+    .colophon { font-size: 11px; max-width: 70vw; }
+  }
+  @media (max-height: 560px) {
+    .copy { top: 48px; }
+    .title { font-size: clamp(48px, 9vh, 96px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; }
+    .copy { transform: none; will-change: auto; }
+    .colophon a, .products a { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scene" aria-hidden="true">
+  <iframe id="scene" class="scene-frame" src="scene/living-green.html" title="Living moss world" tabindex="-1" loading="eager"></iframe>
+</div>
+
+<main class="ui" id="ui">
+  <div class="copy" id="copy">
+    <div class="reveal">
+      <h1 class="title"><span>Chroma</span><span>Labs</span></h1>
+      <p class="lede">We find the weak spots before they take root.</p>
+      <nav class="products" aria-label="Products">
+        <!-- Vora moves to https://vora.chrom.ar/ later; swap the href then. -->
+        <a href="https://chrom.ar/">Vora</a>
+        <a href="https://yoku.chrom.ar/">Yoku</a>
+      </nav>
+    </div>
+  </div>
+
+  <footer class="colophon reveal">
+    <a href="https://threeui.com/three-js/sylva-living-world/living-green" rel="noopener">Scene: Sylva Living World by Meng To, MIT license</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var ui = document.getElementById('ui');
+  var copy = document.getElementById('copy');
+  var frame = document.getElementById('scene');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Reveal the copy once the scene document has loaded; never wait on it forever. */
+  var revealed = false;
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    ui.classList.add('is-ready');
+  }
+  frame.addEventListener('load', function () { setTimeout(reveal, reduced ? 0 : 500); });
+  setTimeout(reveal, 2600);
+
+  if (reduced) return;
+
+  /* Parallax: the scene frame owns the pointer and reports it; the copy drifts against it. */
+  var target = { x: 0, y: 0 }, cur = { x: 0, y: 0 }, raf = 0;
+  function step() {
+    raf = 0;
+    cur.x += (target.x - cur.x) * 0.08;
+    cur.y += (target.y - cur.y) * 0.08;
+    copy.style.setProperty('--px', cur.x.toFixed(4));
+    copy.style.setProperty('--py', cur.y.toFixed(4));
+    if (Math.abs(target.x - cur.x) > 0.001 || Math.abs(target.y - cur.y) > 0.001) raf = requestAnimationFrame(step);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(step); }
+  window.addEventListener('message', function (e) {
+    if (e.source !== frame.contentWindow) return;
+    var d = e.data;
+    if (!d || d.source !== 'chroma-scene') return;
+    if (d.type === 'pointer') {
+      target.x = Math.max(-1, Math.min(1, (d.x - 0.5) * 2));
+      target.y = Math.max(-1, Math.min(1, (d.y - 0.5) * 2));
+      kick();
+    } else if (d.type === 'leave') {
+      target.x = 0; target.y = 0;
+      kick();
+    }
+  });
+})();
+</script>
+</body>
+</html>
